@@ -110,7 +110,7 @@ func (p *Proxy) connect(ctx context.Context, address string) (net.Conn, error) {
 
 	bw := bytes.NewBuffer(nil)
 
-	fmt.Fprintf(bw, "CONNECT %s HTTP/1.1\r\n", address)
+	fmt.Fprintf(bw, "CONNECT %s HTTP/1.0\r\n", address)
 	if u := p.targetURL.User; u != nil {
 		n := u.Username()
 		p, _ := u.Password()
