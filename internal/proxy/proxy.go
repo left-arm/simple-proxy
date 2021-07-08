@@ -82,6 +82,10 @@ func (p *Proxy) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	http.Error(w, "", http.StatusBadRequest)
 }
 
+func (p *Proxy) DialContext(ctx context.Context, network, addr string) (net.Conn, error) {
+	return p.connect(ctx, addr)
+}
+
 func (p *Proxy) connect(ctx context.Context, address string) (net.Conn, error) {
 	var (
 		conn net.Conn
